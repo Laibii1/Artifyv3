@@ -168,7 +168,7 @@ export const Register = () => {
 
                 <div className="w-full h-full md:w-1/2 mt-6 md:mt-0 md:pl-6">
                   <img
-                    src="./Plate.jpeg"
+                    src="/Plate.jpeg"
                     alt="Decorative Plate"
                     className="rounded-xl w-full h-[500px]"
                   />

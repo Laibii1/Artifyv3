@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Playpen+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rammetto+One&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+US+Modern:wght@100..400&display=swap');
+
+@import "tailwindcss";
+
+.playpen-font {
+  font-family: 'Playpen Sans', cursive;
+}
+
+.playwrite-font {
+  font-family: 'Playwrite US Modern', cursive;
+}
+
+.Fontoutfit{
+    --font-outfit: Outfit,"sans-serif"; 
+   
+}
+
+.FontRammeto{
+  --font-rammetto : Rammetto One,"sans-serif";
+}
+
+
+

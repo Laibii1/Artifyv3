@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Playpen+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rammetto+One&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+US+Modern:wght@100..400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import "tailwindcss";
+
+.playpen-font {
+  font-family: 'Playpen Sans', cursive;
+}
+.Inter-font {
+  font-family: 'Inter', sans-serif;
+}
+
+.playwrite-font {
+  font-family: 'Playwrite US Modern', cursive;
+}
+
+.Fontoutfit{
+    --font-outfit: Outfit,"sans-serif"; 
+   
+}
+.FontoutfitLight{
+    --font-outfit-light: Outfit,"sans-serif"; 
+   
+}
+
+.FontRammeto{
+  --font-rammetto : Rammetto One,"sans-serif";
+}
+
+
+

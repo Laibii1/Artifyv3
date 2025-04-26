@@ -28,7 +28,7 @@ export const HistoryCompThree = () => {
               )}
               <div className="absolute top-2 right-4">
                 <div className="bg-black font-outfit text-lg text-white rounded-full px-2 py-1">
-                  Date: {item.uploadDate}
+                   {item.uploadDate}
                 </div>
               </div>
             </div>

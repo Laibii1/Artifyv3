@@ -18,7 +18,7 @@ export const SignIn = () => {
             animate={{ y: 0 }}
             exit={{ y: "-10%" }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
-            className="fixed top-3/5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-2 bg-white text-black p-5 shadow-lg z-50 rounded-xl overflow-hidden max-w-4xl h-[600px] w-[90%]"
+            className="fixed top-4/8 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-2 bg-white text-black p-5 shadow-lg z-50 rounded-xl overflow-hidden max-w-4xl h-[600px] w-[90%]"
           >
             <div className="flex flex-col md:flex-row">
               {/* Form */}

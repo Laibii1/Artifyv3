@@ -23,7 +23,7 @@ export const SearchBar = () => {
 
   return (
     isOpen && (
-      <div ref={searchRef} className="flex justify-center items-start w-full absolute tracking-wide top-8 lg:top-12 md:top-8 sm:top-8">
+      <div ref={searchRef} className="flex justify-center items-start w-full absolute tracking-wide top-0 lg:top-1 md:top-0 sm:top-0">
         <motion.div
           initial={{ x: "10%" }}
           animate={{ x: 4 }}

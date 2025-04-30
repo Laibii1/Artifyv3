@@ -7,17 +7,17 @@ export const Cart = () => {
   const [cartItems, setCartItems] = useState([
     {
       id: 1,
-      name: 'INGROWN FACE DUO',
-      price: 60,
+      name: 'Painting Book',
+      price: 1500,
       quantity: 1,
-      image: 'https://placehold.co/100x100',
+      image: './ExtrArt3.png',
     },
     {
       id: 2,
-      name: 'Route Package Protection',
-      price: 1,
+      name: 'Swan Painting',
+      price: 1000,
       quantity: 1,
-      image: 'https://placehold.co/100x100',
+      image: './ExtrArt1.png',
     },
   ]);
   const [promoCode, setPromoCode] = useState('');

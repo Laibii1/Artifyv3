@@ -11,6 +11,8 @@ import { ProductPage } from '../Product/ProductPage';
 import {CheckoutPage} from '../Checkout/CheckoutPage';
 import { UserProvider } from '../../components/Contexts/UserContext'; // ✅ import context
 import { UploadedItemsProvider } from '../../components/Contexts/UploadedItemsContext';
+import { ProductCompOne } from '../../components/Product/ProductCompOne';
+import {MetamaskPaymentPage} from '../Payment/MetamaskPaymentPage';
 
 const App = () => {
   return (
@@ -28,6 +30,7 @@ const App = () => {
           <Route path="/cart" element={<CartPage />} />
           <Route path="/product" element={<ProductPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/metamask-payment" element={<MetamaskPaymentPage />} />
           <Route path="*" element={<Error404Page />} />
         </Routes>
       </BrowserRouter>

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { FaHeart } from "react-icons/fa";
 import "./DiscountSection.css";
-import { Link } from "react-router-dom";
 
 const ProductShowcase = ({ product, isLarge }) => {
   const [liked, setLiked] = useState(false);
@@ -21,13 +20,6 @@ const ProductShowcase = ({ product, isLarge }) => {
       >
         <FaHeart size={18} color={liked ? "#D7521D" : "white"} />
       </button>
-
-      {/* Product Button */}
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
-        <Link to='/product' className="bg-[#D7521D] font-bold font-outfit text-white px-5 py-2 rounded-lg transition-all duration-300 hover:bg-[#000000] hover:scale-105">
-          See Product
-        </Link>
-      </div>
     </div>
   );
 };
@@ -44,7 +36,6 @@ export const DiscountProductCard = () => {
 
   return (
     <div className=" px-6 mt-30">
-
       {/* Grid Layout */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-4 mr-2 ml-2">
        <div className="mb-6 text-center">

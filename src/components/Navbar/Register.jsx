@@ -1,11 +1,17 @@
+
 import './navbar.css';
 import { motion } from 'framer-motion';
 import React, { useState } from 'react';
 import { FaCheck, FaEye, FaEyeSlash } from "react-icons/fa";
 import { SignIn } from './Signin';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../Contexts/authContext';
+import { doSignInWithEmailAndPassword, doSignInWithGoogle, doCreateUserWithEmailAndPassword } from '../../firebase/auth';
 
 export const Register = () => {
+  const { userLoggedIn } = useAuth();
+  const [isSigningIn, setIsSigningIn] = useState(false); // Track signing in state
+
   const [formData, setFormData] = useState({
     fullName: '',
     phone: '',
@@ -36,24 +42,61 @@ export const Register = () => {
 
   const validatePassword = (password) => {
     const hasUpperCase = /[A-Z]/.test(password);
-    const isAlphanumeric = /^[a-zA-Z0-9]+$/.test(password);
-    return password.length >= 8 && hasUpperCase && isAlphanumeric;
+    const hasLowerCase = /[a-z]/.test(password);
+    const hasDigit = /[0-9]/.test(password);
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+    return (
+      password.length >= 8 &&
+      hasUpperCase &&
+      hasLowerCase &&
+      hasDigit &&
+      hasSpecialChar
+    );
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const { password } = formData;
+    const { password, email } = formData;
 
+    // Validate the password
     if (!validatePassword(password)) {
-      setError('Password must be at least 8 characters, alphanumeric, and contain at least one capital letter.');
+      setError('Password must be at least 8 characters long, and include uppercase, lowercase, a digit, and a special character.');
       return;
     }
 
     setError('');
     console.log('Form submitted:', formData);
 
-    setShowRegisterForm(false);
-    setShowSuccessPopup(true);
+    setIsSigningIn(true); // Start signing in state
+
+    try {
+      await doCreateUserWithEmailAndPassword(formData.email, formData.password); // Firebase user creation
+      setShowRegisterForm(false);
+      setShowSuccessPopup(true);
+    } catch (error) {
+      setError(error.message);  // Handle any errors from Firebase
+    }
+
+    // Automatically sign in the user after successful registration
+    if (!showSignIn) {
+      setShowSignIn(true);
+      await doSignInWithEmailAndPassword(email, password);
+    }
+
+    setIsSigningIn(false); // End signing in state
+  };
+
+  // Google Sign In Handler
+  const onGoogleSignIn = (e) => {
+    e.preventDefault();
+    setIsSigningIn(true); // Start loading state
+
+    if (!showSignIn) {
+      setShowSignIn(true);
+      doSignInWithGoogle().catch((err) => {
+        setIsSigningIn(false); // End loading state on error
+      });
+    }
   };
 
   const handleSignInClick = () => {
@@ -92,7 +135,7 @@ export const Register = () => {
                   <input
                     type="tel"
                     name="phone"
-                    placeholder="Phone number*"
+                    placeholder="Phone number *"
                     value={formData.phone}
                     onChange={handleInputChange}
                     className="w-full p-3 border rounded-lg focus:outline-none focus:ring"
@@ -113,7 +156,7 @@ export const Register = () => {
                     <input
                       type={showPassword ? 'text' : 'password'}
                       name="password"
-                      placeholder="Password*"
+                      placeholder="Password *"
                       value={formData.password}
                       onChange={handleInputChange}
                       className="w-full p-3 border rounded-lg focus:outline-none focus:ring pr-10"
@@ -150,13 +193,14 @@ export const Register = () => {
 
                   <button
                     type="submit"
+                    disabled={isSigningIn} // Disable submit while signing in
                     className="w-full bg-black text-white font-outfit font-bold py-3 rounded-lg hover:opacity-90 transition-all duration-300 hover:bg-[#D7521D] hover:scale-105"
                   >
-                    Submit
+                    {isSigningIn ? 'Signing In...' : 'Submit'}
                   </button>
 
                   <p className="text-sm font-outfit font-semibold text-center mt-2">
-                    Already had an account?{' '}
+                    Already have an account?{' '}
                     <span
                       onClick={handleSignInClick}
                       className="text-grey-500 cursor-pointer font-outfit font-bold"
@@ -185,21 +229,15 @@ export const Register = () => {
                 </div>
               </div>
               <h2 className="text-2xl font-bold font-outfit mb-2">Congratulations!</h2>
-              <p className="mb-6 font-outfit">Your account has been created successfully</p>
+              <p className="mb-6 font-outfit">Your account has been created successfully. Please login to further proceed</p>
               <Link to="/create-profile">
                 <button
                   onClick={() => setShowSuccessPopup(false)}
-                  className="hover:bg-[#D7521D] font-outfit bg-black border-white border-1 hover:border-0 shadow-[#D7521D] shadow-sm text-white px-6 py-2 rounded-lg text-lg mr-2 transition duration-300 hover:scale-105"
+                  className="hover:bg-[#D7521D] font-outfit bg-black text-white rounded-lg py-2 px-4"
                 >
-                  Set Profile
+                  Go to Profile
                 </button>
               </Link>
-              <button
-                onClick={() => setShowSuccessPopup(false)}
-                className="bg-black font-outfit border-1 border-white hover:shadow-sm hover:shadow-white text-white px-10 py-2 rounded-lg text-lg ml-2 transition duration-300 hover:scale-105"
-              >
-                Skip
-              </button>
             </div>
           )}
         </>
@@ -207,3 +245,4 @@ export const Register = () => {
     </>
   );
 };
+

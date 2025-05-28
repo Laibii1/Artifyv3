@@ -1,25 +1,10 @@
-
 import { Link } from 'react-router-dom';
 
 export const ProductCompOne = () => {
   return (
-    <div className="bg-white flex justify-center items-center mt-10  md:ml-20">
+    <div className="bg-white flex justify-center items-center mt-10 md:ml-20">
       <div className="flex flex-col md:flex-row bg-white p-4 rounded-lg w-full max-w-6xl">
         
-        {/* Column 1 - Thumbnails */}
-        <div className="flex flex-col items-center md:items-start w-full md:w-1/7">
-          <img
-            alt="Thumbnail"
-            className="w-[150px] h-[120px] mb-2 rounded object-cover"
-            src="/artistwork2.jpeg"
-          />
-          <img
-            alt="Thumbnail"
-            className="w-[150px] h-[120px] mb-2 rounded object-cover"
-            src="/artistwork2.jpeg"
-          />
-        </div>
-
         {/* Column 2 - Large Image */}
         <div className="flex justify-center items-center w-full md:w-3/8 md:ml-6 mt-4 md:mt-0">
           <div className="w-full h-[470px]">
@@ -32,7 +17,7 @@ export const ProductCompOne = () => {
         </div>
 
         {/* Column 3 - Text Content */}
-        <div className="w-full  md:w-3/8 md:ml-6 mt-4 md:mt-10">
+        <div className="w-full md:w-3/8 md:ml-6 mt-4 md:mt-10">
           <h1 className="text-2xl font-bold">Digital Art Flower Design</h1>
 
           <div className="flex items-center mt-2">
@@ -61,10 +46,12 @@ export const ProductCompOne = () => {
               Add to cart
             </Link>
             <Link to='/checkout' className="bg-black text-lg font-outfit font-bold text-white px-9 py-2 rounded-2xl transition-all duration-300 hover:bg-[#D7521D] hover:scale-105">
-              Checkout</Link>
+              Checkout
+            </Link>
           </div>
         </div>
       </div>
     </div>
   );
 };
+
